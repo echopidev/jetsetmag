@@ -4,6 +4,10 @@
  */
 package interfac;
 
+import DAO.AdminDao;
+import Entities.Adminstrateur;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ferchichi
@@ -31,8 +35,8 @@ public class Sauthentifier extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Valider = new javax.swing.JButton();
         Quter = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        loginn = new javax.swing.JTextField();
+        pwdd = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,6 +52,11 @@ public class Sauthentifier extends javax.swing.JFrame {
         jLabel3.setText("mot de passe:");
 
         Valider.setText("Valider");
+        Valider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValiderActionPerformed(evt);
+            }
+        });
 
         Quter.setText("Exit");
 
@@ -80,8 +89,8 @@ public class Sauthentifier extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                .addComponent(jTextField1)))))
+                                .addComponent(pwdd, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                .addComponent(loginn)))))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,10 +105,10 @@ public class Sauthentifier extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(loginn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(54, 54, 54)
                         .addComponent(jLabel3))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Valider)
@@ -109,6 +118,24 @@ public class Sauthentifier extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiderActionPerformed
+       AdminDao ad=new AdminDao();
+        String login=loginn.getText();
+       String pwd =pwdd.getText();
+       Adminstrateur admin=ad.verification(login, pwd);
+       if(admin==null){
+       System.out.print("ereur");
+       }
+       else ;
+           System.out.print("connexion valider");
+       JOptionPane.showMessageDialog(rootPane, "connexion valider");
+      
+       Page1 p1=new Page1();
+       p1.setVisible(true);
+       
+       
+    }//GEN-LAST:event_ValiderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,7 +178,7 @@ public class Sauthentifier extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField loginn;
+    private javax.swing.JTextField pwdd;
     // End of variables declaration//GEN-END:variables
 }
